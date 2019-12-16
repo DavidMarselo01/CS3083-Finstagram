@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <style type="text/css">
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        a {
+            display: block;
+        }
+
+    </style>
+    <p>People who have been tagged</p>
+    <table>
+        <th>Username</th>
+        <th>Name</th>
+        {% for line in dataTag %}
+        <tr>
+            <td>{{line.username}}</td>
+            <td>{{line.firstName}} {{line.lastName}}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    <p>People who liked the photo</p>
+    <table>
+        <th>Username</th>
+        <th>Rating</th>
+        {% for line in dataLike %}
+        <tr>
+            <td>{{line.username}}</td>
+            <td>{{line.rating}}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    
+    <a href="/sharedPhotos">Go Back to Pictures</a>
+    <a href="/">Go back Home</a>
+
+</body>
+
+</html>

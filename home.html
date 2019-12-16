@@ -1,0 +1,65 @@
+
+
+<!-- 
+<html>
+<head>
+</head>
+<body>
+<form action="/post" method="POST">
+	<h1>Welcome {{username}}</h1> 
+	<input type="text" name = "blog" placeholder="post" required/> </br>
+	<input type="submit" value = Post />
+</form>
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+Here are your posts:
+
+<table>
+	<th>Time</th>
+	<th>Post</th>
+
+{% for line in posts %}
+	<tr>
+		<td>{{line.ts}}</td>
+		<td>{{line.blog_post}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<a href="/select_blogger">Select a blogger</a>
+<br>
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>
+-->
+
+
+  
+<html>
+    <head>
+        <title>Finstagram</title>
+    </head>
+    <body>
+        <h1>Hello, {{ username }}!</h1>
+        <div>
+            <ul>
+                <li><a href="/MyImages">View My Images</a></li>
+                <li><a href="/sharedPhotos">Shared With Me</a></li>
+                <li><a href="/followBloggers">Select Bloggers To Follow</a></li>
+                <li><a href="/followersFolowees">List of your followers + status of your follow requests + who you follow</a></li>
+                <li><a href="/upload">Upload an Image</a></li>
+                <li><a href="/createGroup">Create a Friend Group</a></li>
+                <li><a href="/addPeopleToGroup">Add People to a Group</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <title>Image Upload</title>
+</head>
+
+<body>
+    <style type="text/css">
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+    </style>
+    <h1>Upload an Image!</h1>
+    <p>
+        {% if message %}
+            {{ message }}
+        {% endif %}
+    </p>
+    <div>
+        <form action="/uploadImage" method="post" enctype="multipart/form-data">
+            <input type="file" name="imageToUpload" accept="image/*" required>
+            <br>
+            <p style="display: inline">Share with all Followers?</p>
+            <input style="display: inline" type="checkbox" name="allFollowersCheckBox" /> <br>
+            <p><b>OR</b></p>
+            <p style="display: inline">Share with Groups?</p>
+            <br>
+            <table>
+                <th>GroupName</th>
+                <th>GroupOwner</th>
+                <th>Share</th>
+
+                {% for line in dataForPrintingGroups %}
+                <tr>
+                    <td>{{line.groupName}}</td>
+                    <td>{{line.owner_username}}</td>
+                    <td><input type="checkbox" name="{{line.groupName}}+{{line.owner_username}}" /></td>
+                </tr>
+                {% endfor %}
+
+            </table>
+            <textarea cols="30" rows="5" type="text" name="caption" placeholder="Caption"></textarea>
+            <br>
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+
+    <br />
+
+    <a href="/">Go back Home</a>
+</body>
+
+</html>

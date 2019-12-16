@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Shared Pictures</h1>
+
+    <style type="text/css">
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        a {
+            display: block;
+        }
+
+    </style>
+
+    <table>
+        <th>Photo Poster</th>
+        <th>Time Stamp</th>
+        <th>Image</th>
+        <th>photoID</th>
+        {% for line in data %}
+        <tr>
+            <td>{{line.firstName}} {{line.lastName}}</td>
+            <td>{{line.postingdate}}</td>
+            <td>
+                <img src="../images/{{line.filepath}}" width="200" />
+                <form action="/tagsAndLikes" method="POST">
+                    <input type="hidden" name="photoID" value="{{line.photoID}}">
+                    <input type="submit" value= 'Click here to see tags and likes' />
+                </form>
+            </td>
+            <td>{{line.photoID}}</td>
+        </tr>
+        
+        {% endfor %}
+
+    </table>
+    <a href="/">Go back Home</a>
+</body>
+
+</html>

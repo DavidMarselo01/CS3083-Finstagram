@@ -1,0 +1,22 @@
+<html>
+<head>
+</head>
+<body>
+<form action="/registerAuth" method="POST">
+    <input type="text" name = "firstName" placeholder="firstName" required/> </br>
+    <input type="text" name = "lastName" placeholder="lastName" required/> </br>
+	<input type="text" name = "username" placeholder="username" required/> </br>
+	<input type="password" name = "password" placeholder="password" required/></br>
+	<input type="submit" value = Register />
+	<!-- This is a scripting language called Ginga, part of the flask system-->
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+<a href="/">Go back</a>
+
+</body>
+
+
+</html>

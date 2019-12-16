@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Finstagram</title>
+</head>
+<body>
+    <style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<p>Who you Follow</p>
+
+<table>
+	<th>Username</th>
+	<th>Followed Back</th>
+
+{% for line in dataForFollowing %}
+	<tr>
+		<td>{{line.username_followed}}</td>
+		<td>{{line.followstatus}}</td>
+	</tr>
+{% endfor %}
+
+</table>
+
+<p>Who is following you and you don't follow them</p>
+
+<table>
+	<th>Username</th>
+	<th>Follow Back</th>
+	<th>Delete Request</th>
+
+{% for line in dataForFollowed %}
+	<tr>
+		<td>{{line.username_follower}}</td>
+		<td>
+            <form action="/followBack" method="POST">
+                <input type="hidden" name="username_follower" value="{{line.username_follower}}">
+                <input type="submit" value = Follow />
+            </form>
+        </td>
+        <td>
+            <form action="/deleteFollowRequest" method="POST">
+                <input type="hidden" name="username_follower" value="{{line.username_follower}}">
+                <input type="submit" value = "Delete Request" />
+            </form>
+        </td>
+	</tr>
+{% endfor %}
+
+</table>
+
+
+<a href="/">Go back Home</a>
+
+</body>
+</html>

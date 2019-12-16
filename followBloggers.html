@@ -1,0 +1,93 @@
+<!--
+<html>
+<head>
+</head>
+<body>
+
+
+<p>Who would you like to follow?</p>
+<br>
+
+<form action="/follow" method="GET">
+
+
+{% for line in user_list %}
+<input type="checkbox" name="poster" value={{line.username}}>{{line.username}}</input>
+	<br>
+{% endfor %}
+
+<input type="submit" value="Follow">
+
+</form>
+
+
+<a href="/home"><div>Go Back Home</div></a>
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>
+
+
+@app.route("/followBloggers", methods=["GET"])
+@login_required
+def followBloggers():
+
+    username = session['username']
+    cursor = connection.cursor();
+    query = 'SELECT DISTINCT username FROM Person'
+    cursor.execute(query)
+    data = cursor.fetchall()
+    cursor.close()
+    return render_template('followBloggers.html', user_list = data)
+
+@app.route('/follow', methods = ['GET', 'POST'])
+def follow():
+    poster = request.args['poster']
+    cursor = conn.cursor();
+    query = 'SELECT ts, blog_post FROM blog WHERE username = %s ORDER BY ts DESC'
+    cursor.execute(query, poster)
+    data = cursor.fetchall()
+    cursor.close()
+    return render_template('show_posts.html', poster_name=poster, posts = data)
+-->
+
+
+<html>
+<head>
+</head>
+<body>
+
+
+<p>Who would you like to follow?</p>
+<br>
+
+<form action="/follow" method="POST">
+
+    <input type="text" name = "username" placeholder="Enter username" required/> <br>
+    <input type="submit" value = Follow />
+
+</form>
+
+{{whoYouWantToFollow}}
+{{usernameFollow}}
+
+{% if messageSuccess %}
+    {{ messageSuccess }}
+{% endif %}
+<br/>
+
+{% if messageFailure %}
+    {{ messageFailure }}
+{% endif %}
+<br/>
+
+
+<a href="/home"><div>Go Back Home</div></a>
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>
